@@ -6,7 +6,6 @@ let currentName = localStorage.getItem("currentName") || "How I Met Your Mother"
 const player = document.getElementById('player');
 const episodeLabel = document.getElementById('Episode-label');
 const seasonLabel = document.getElementById('Season-label');
-const idInput = document.getElementById('id-input');
 const savedShows = document.getElementById("savedShows");
 const searchToggle = document.getElementById("search-toggle");
 const searchInput = document.getElementById("search-input");
@@ -35,7 +34,6 @@ tvServers().forEach((_, index) => {
     serverButtons.appendChild(button);
 });
 
-idInput.value = currentName;
 
 function updateSavedShows() {
     const progress = JSON.parse(localStorage.getItem("progress")) || {};
@@ -54,7 +52,6 @@ function updateSavedShows() {
         div.addEventListener("click", function () {
             currentId = id;
             currentName = show.name
-            idInput.value = show.name;
             loadProgress(id);
             updatePlayer();
         });
@@ -70,7 +67,6 @@ function updateSavedShows() {
                 currentSsIndex = 1;
                 currentEpIndex = 1;
 
-                idInput.value = "";
 
                 player.src = "";
                 episodeLabel.textContent = "Episode: 1";
@@ -126,37 +122,6 @@ function updatePlayer() {
 loadProgress(currentId);
 updatePlayer();
 
-idInput.addEventListener("keydown", async function (event) {
-    if (event.key !== "Enter") return;
-
-    const query = this.value.trim();
-
-    if (!query) return;
-
-    try {
-        const response = await fetch(`/api/tmdbTvT?q=${encodeURIComponent(query)}`);
-
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-
-        const data = await response.json();
-
-        if (data.results.length > 0) {
-            const show = data.results[0];
-
-            currentName = show.name;
-            currentId = show.id.toString();
-            idInput.value = currentName
-            loadProgress(currentId);
-            updatePlayer();
-        } else {
-            console.log("No show found.");
-        }
-    } catch (error) {
-        console.error(error);
-    }
-});
 
 document.getElementById('nextEp-btn').addEventListener('click', function () {
     currentEpIndex++;
@@ -218,7 +183,6 @@ searchInput.addEventListener("keydown", async function (event) {
 
             currentName = show.name;
             currentId = show.id.toString();
-            idInput.value = currentName
             loadProgress(currentId);
             updatePlayer();
         } else {
