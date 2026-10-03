@@ -22,7 +22,7 @@ function tvServers() {
 
 let currentServer = 2;
 
-const playerButtons = document.querySelector(".player-buttons");
+const serverButtons = document.querySelector(".server-buttons");
 
 tvServers().forEach((_, index) => {
     const button = document.createElement("button");
@@ -30,7 +30,7 @@ tvServers().forEach((_, index) => {
     button.dataset.server = index;
     button.textContent = `Server ${index + 1}`;
 
-    playerButtons.appendChild(button);
+    serverButtons.appendChild(button);
 });
 
 idInput.value = currentName;

@@ -11,46 +11,43 @@
 <body>
 
     <div class="layout">
-
-        <div class="sidebar">
-
-            <div class="card">
-                <h3>Show ID</h3>
-                <input type="text" id="id-input" placeholder="Enter a Show Name">
-            </div>
-
-            <div class="card">
-                <h3>Season</h3>
-                <div class="control-row">
-                    <button id="prevSs-btn">&larr;</button>
-                    <span id="Season-label">Season: 1</span>
-                    <button id="nextSs-btn">&rarr;</button>
-                </div>
-            </div>
-
-            <div class="card">
-                <h3>Episode</h3>
-                <div class="control-row">
-                    <button id="prevEp-btn">&larr;</button>
-                    <span id="Episode-label">Episode: 1</span>
-                    <button id="nextEp-btn">&rarr;</button>
-                </div>
-            </div>
-
-            <div class="card">
-                <h3>Saved Shows</h3>
-                <div id="savedShows"></div>
-            </div>
-
-        </div>
-
         <div class="player-section">
+            <div class="server-buttons"></div>
             <div class="player-wrap">
                 <iframe id="player" src="https://vsembed.su/embed/tv?imdb=tt0491738&season=1&episode=1"
                     allowfullscreen></iframe>
             </div>
 
-            <div class="player-buttons"></div>
+            <div class="player-buttons">
+                <div class="card">
+                    <h3>Saved Shows</h3>
+                    <div id="savedShows"></div>
+                </div>
+
+                <div class="card">
+                    <h3>Season</h3>
+                    <div class="control-row">
+                        <button id="prevSs-btn">&larr;</button>
+                        <span id="Season-label">Season: 1</span>
+                        <button id="nextSs-btn">&rarr;</button>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>Episode</h3>
+                    <div class="control-row">
+                        <button id="prevEp-btn">&larr;</button>
+                        <span id="Episode-label">Episode: 1</span>
+                        <button id="nextEp-btn">&rarr;</button>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>Show ID</h3>
+                    <input type="text" id="id-input" placeholder="Enter a Show Name">
+                </div>
+
+            </div>
 
         </div>
     </div>
