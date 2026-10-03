@@ -12,7 +12,15 @@
 
     <div class="layout">
         <div class="player-section">
-            <div class="server-buttons"></div>
+            <div class="top-row">
+                <div class="server-buttons"></div>
+
+                <div class="search-wrap">
+                    <button id="search-toggle" type="button" aria-label="Search">🔍</button>
+                    <input type="text" id="search-input" placeholder="Search a show...">
+                </div>
+            </div>
+
             <div class="player-wrap">
                 <iframe id="player" src="https://vsembed.su/embed/tv?imdb=tt0491738&season=1&episode=1"
                     allowfullscreen></iframe>

@@ -8,6 +8,8 @@ const episodeLabel = document.getElementById('Episode-label');
 const seasonLabel = document.getElementById('Season-label');
 const idInput = document.getElementById('id-input');
 const savedShows = document.getElementById("savedShows");
+const searchToggle = document.getElementById("search-toggle");
+const searchInput = document.getElementById("search-input");
 
 function tvServers() {
     return [
@@ -187,4 +189,50 @@ document.querySelectorAll(".server-btn").forEach(button => {
         currentServer = Number(this.dataset.server);
         updatePlayer();
     });
+});
+
+searchToggle.addEventListener("click", () => {
+    const isOpen = searchInput.classList.toggle("open");
+    if (isOpen) searchInput.focus();
+    else searchInput.value = "";
+});
+
+searchInput.addEventListener("keydown", async function (event) {
+    if (event.key !== "Enter") return;
+
+    const query = this.value.trim();
+
+    if (!query) return;
+
+    try {
+        const response = await fetch(`/api/tmdbTvT?q=${encodeURIComponent(query)}`);
+
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+
+        const data = await response.json();
+
+        if (data.results.length > 0) {
+            const show = data.results[0];
+
+            currentName = show.name;
+            currentId = show.id.toString();
+            idInput.value = currentName
+            loadProgress(currentId);
+            updatePlayer();
+        } else {
+            console.log("No show found.");
+        }
+    } catch (error) {
+        console.error(error);
+    }
+
+});
+
+// close when clicking elsewhere (only if empty)
+document.addEventListener("click", (e) => {
+    if (!e.target.closest(".search-wrap") && !searchInput.value) {
+        searchInput.classList.remove("open");
+    }
 });
