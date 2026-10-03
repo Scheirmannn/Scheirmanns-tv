@@ -127,7 +127,7 @@
         .player-buttons {
             display: flex;
             justify-content: center;
-            align-items: flex-start;
+            align-items: stretch;
             gap: 15px;
             flex-wrap: wrap;
         }
@@ -158,7 +158,7 @@
             flex-direction: column;
             gap: 8px;
 
-            max-height: 141px;
+            max-height: 40px;
             overflow-y: auto;
         }
 
