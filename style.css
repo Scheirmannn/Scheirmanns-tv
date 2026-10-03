@@ -127,7 +127,6 @@
         .player-buttons {
             display: flex;
             gap: 15px;
-            flex-wrap: wrap;
         }
 
         .server-buttons {
