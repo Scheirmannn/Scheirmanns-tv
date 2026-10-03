@@ -196,7 +196,7 @@ searchInput.addEventListener("keydown", async function (event) {
 
 // close when clicking elsewhere (only if empty)
 document.addEventListener("click", (e) => {
-    if (!e.target.closest(".search-wrap") && !searchInput.value) {
+    if (!e.target.closest(".search-wrap")) {
         searchInput.classList.remove("open");
     }
 });
